@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "antd";
 import { useEffect } from "react";
 
+import RouteTable from "./components/RouteTable";
+
 import { getRoutes } from "./redux/routes";
 import { RootStore } from "./redux/store";
 
@@ -16,9 +18,10 @@ function App() {
 	return (
 		<>
 			<h1>Route on the map by points.</h1>
-			{routes.length}
 			<Row gutter={[16, 16]}>
-				<Col span={12} />
+				<Col span={12}>
+					<RouteTable routes={routes} />
+				</Col>
 				<Col span={12} />
 			</Row>
 		</>
