@@ -1,6 +1,8 @@
 import { Table } from "antd";
 
 import { Route } from "../types";
+import { useSelector } from "react-redux";
+import { RootStore } from "../redux/store";
 
 const columns = [
 	{
@@ -48,12 +50,10 @@ const columns = [
 	},
 ];
 
-type Props = {
-	routes: Route[];
-};
+function RouteTable() {
+	const { loading, routes } = useSelector((store: RootStore) => store.routes);
 
-function RouteTable({ routes }: Props) {
-	return <Table columns={columns} dataSource={routes} rowKey={"id"} />;
+	return <Table columns={columns} dataSource={routes} rowKey={"id"} loading={loading} />;
 }
 
 export default RouteTable;

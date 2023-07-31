@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Col, Layout, Typography, Row } from "antd";
 
@@ -6,13 +6,11 @@ import RouteTable from "./components/RouteTable";
 import Map from "./components/Map";
 
 import { getRoutes } from "./redux/routes";
-import { RootStore } from "./redux/store";
 
 const { Title, Link } = Typography;
 const { Content, Footer } = Layout;
 
 function App() {
-	const { routes } = useSelector((store: RootStore) => store.routes);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -27,7 +25,7 @@ function App() {
 				<Title level={3}>To build a motion track, select a route from the table.</Title>
 				<Row>
 					<Col span={8}>
-						<RouteTable routes={routes} />
+						<RouteTable />
 					</Col>
 					<Col span={16}>
 						<Map />
