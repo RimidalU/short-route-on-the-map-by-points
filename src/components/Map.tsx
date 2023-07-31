@@ -9,7 +9,8 @@ function Map() {
 		<MapContainer
 			style={{
 				height: "80vh",
-				width: "66vw",
+				width: "100%",
+				margin: "0 auto",
 			}}
 			center={position}
 			zoom={13}
