@@ -19,7 +19,7 @@ const columns = [
 				dataIndex: "points",
 				render: (_: unknown, { points }: Route) => (
 					<>
-						<div>{points[0].lat} ,</div>
+						<div>{points[0].lat},</div>
 						<div>{points[0].lng}</div>
 					</>
 				),
@@ -29,7 +29,7 @@ const columns = [
 				dataIndex: "points",
 				render: (_: unknown, { points }: Route) => (
 					<>
-						<div>{points[1].lat} ,</div>
+						<div>{points[1].lat},</div>
 						<div>{points[1].lng}</div>
 					</>
 				),
@@ -39,7 +39,7 @@ const columns = [
 				dataIndex: "points",
 				render: (_: unknown, { points }: Route) => (
 					<>
-						<div>{points[2].lat} ,</div>
+						<div>{points[2].lat},</div>
 						<div>{points[2].lng}</div>
 					</>
 				),
