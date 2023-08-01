@@ -9,7 +9,15 @@ export type Route = {
 	points: Point[];
 };
 
+export type Marker = {
+	id: number;
+	name: string;
+	position: Point;
+};
+
 export type InitialState = {
 	routes: Route[];
+	activeMarkers: Marker[];
+	centerPosition: Point;
 	loading: boolean;
 };

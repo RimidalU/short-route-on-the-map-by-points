@@ -1,21 +1,11 @@
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import { Icon } from "leaflet";
 
+import { RootStore } from "../redux/store";
+
 import "leaflet/dist/leaflet.css";
-
-const position = { lat: 48.86064126361366, lng: 2.3376343848677816 };
-
-const markers = [
-	{
-		geocode: { lat: 48.86064126361366, lng: 2.3376343848677816 },
-	},
-	{
-		geocode: { lat: 48.85, lng: 2.3522 },
-	},
-	{
-		geocode: { lat: 48.855, lng: 2.34 },
-	},
-];
 
 const pinIcon = new Icon({
 	iconUrl: "/pin.png",
@@ -24,7 +14,23 @@ const pinIcon = new Icon({
 	popupAnchor: [20, -58],
 });
 
+type Props = {
+	lat: number;
+	lng: number;
+};
+
+const Recenter = ({ lat, lng }: Props) => {
+	const map = useMap();
+
+	useEffect(() => {
+		map.setView([lat, lng], 13);
+	}, [lat, lng, map]);
+	return null;
+};
+
 function Map() {
+	const { activeMarkers, centerPosition } = useSelector((store: RootStore) => store.routes);
+
 	return (
 		<MapContainer
 			style={{
@@ -32,16 +38,17 @@ function Map() {
 				width: "100%",
 				margin: "0 auto",
 			}}
-			center={position}
+			center={centerPosition}
 			zoom={13}
 		>
+			<Recenter lat={centerPosition.lat} lng={centerPosition.lng} />
 			<TileLayer
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			{markers.map((marker, index) => (
-				<Marker position={marker.geocode} icon={pinIcon} key={index}>
-					<Popup>{`Point ${index + 1}`}</Popup>
+			{activeMarkers?.map((marker) => (
+				<Marker position={marker.position} icon={pinIcon} key={marker.id}>
+					<Popup>{marker.name}</Popup>
 				</Marker>
 			))}
 		</MapContainer>

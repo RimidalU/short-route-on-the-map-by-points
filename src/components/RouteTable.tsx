@@ -1,8 +1,9 @@
 import { Table } from "antd";
 
 import { Route } from "../types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../redux/store";
+import { setActiveMarkers } from "../redux/routes";
 
 const columns = [
 	{
@@ -52,8 +53,26 @@ const columns = [
 
 function RouteTable() {
 	const { loading, routes } = useSelector((store: RootStore) => store.routes);
+	const dispatch = useDispatch();
 
-	return <Table columns={columns} dataSource={routes} rowKey={"id"} loading={loading} />;
+	const handleSetActiveMarkers = (routeId: number) => {
+		dispatch(setActiveMarkers(routeId));
+	};
+	return (
+		<Table
+			columns={columns}
+			dataSource={routes}
+			rowKey={"id"}
+			loading={loading}
+			onRow={(record) => {
+				return {
+					onClick: () => {
+						handleSetActiveMarkers(record.id);
+					},
+				};
+			}}
+		/>
+	);
 }
 
 export default RouteTable;
