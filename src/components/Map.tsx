@@ -1,4 +1,5 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import MarkerClusterGroup from "react-leaflet-cluster";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Icon } from "leaflet";
@@ -46,11 +47,16 @@ function Map() {
 				attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			{activeMarkers?.map((marker) => (
-				<Marker position={marker.position} icon={pinIcon} key={marker.id}>
-					<Popup>{marker.name}</Popup>
-				</Marker>
-			))}
+
+			<MarkerClusterGroup chunkedLoading>
+
+				{activeMarkers?.map((marker) => (
+					<Marker position={marker.position} icon={pinIcon} key={marker.id}>
+						<Popup>{marker.name}</Popup>
+					</Marker>
+				))}
+				
+			</MarkerClusterGroup>
 		</MapContainer>
 	);
 }
