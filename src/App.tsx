@@ -19,7 +19,7 @@ function App() {
 
 	return (
 		<Layout style={{ minHeight: "100vh", textAlign: "center", margin: "0 20px" }}>
-			<Title>Route on the map by points.</Title>
+			<Title>Short route on the map by points.</Title>
 
 			<Content>
 				<Title level={3}>To build a motion track, select a route from the table.</Title>
