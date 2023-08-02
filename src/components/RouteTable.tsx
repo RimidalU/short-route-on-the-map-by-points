@@ -64,11 +64,12 @@ function RouteTable() {
 		<Table
 			columns={columns}
 			dataSource={routes}
-			rowKey={"id"}
+			rowKey={(record) => record.id}
 			loading={loading}
+			rowSelection={{ type: "radio" }}
 			onRow={(record) => {
 				return {
-					onClick: () => {
+					onChange: () => {
 						handleSetActiveMarkers(record.id);
 					},
 				};
