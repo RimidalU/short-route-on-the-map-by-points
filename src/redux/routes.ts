@@ -8,9 +8,7 @@ const initialState: InitialState = {
 	routes: [],
 	activeMarkers: [],
 	centerPosition: defaultPosition,
-	polyline: [],
 	loading: false,
-	loadingPolyline: false,
 };
 const routesSlice = createSlice({
 	name: "routes",
@@ -41,19 +39,9 @@ const routesSlice = createSlice({
 				state.centerPosition = activeMarkers[1].position;
 			}
 		},
-		getPolyline: (state) => {
-			state.loadingPolyline = true;
-		},
-		setLoadedPolyline: (state, { payload }) => {
-			const points =
-				payload.routes[0].geometry.coordinates || [];
-			state.polyline = points
-			state.loadingPolyline = false;
-		},
 	},
 });
 
-export const { getRoutes, setLoadedRoutes, setActiveMarkers, getPolyline, setLoadedPolyline } =
-	routesSlice.actions;
+export const { getRoutes, setLoadedRoutes, setActiveMarkers } = routesSlice.actions;
 
 export default routesSlice.reducer;

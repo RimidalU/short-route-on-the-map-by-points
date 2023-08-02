@@ -1,5 +1,3 @@
-import { LatLngExpression } from "leaflet";
-
 export type Point = {
 	lat: number;
 	lng: number;
@@ -21,7 +19,5 @@ export type InitialState = {
 	routes: Route[];
 	activeMarkers: Marker[];
 	centerPosition: Point;
-	polyline: LatLngExpression[][];
 	loading: boolean;
-	loadingPolyline: boolean;
 };
