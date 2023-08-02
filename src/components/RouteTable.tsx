@@ -3,7 +3,7 @@ import { Table } from "antd";
 import { Route } from "../types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootStore } from "../redux/store";
-import { setActiveMarkers } from "../redux/routes";
+import { getPolyline, setActiveMarkers } from "../redux/routes";
 
 const columns = [
 	{
@@ -56,8 +56,10 @@ function RouteTable() {
 	const dispatch = useDispatch();
 
 	const handleSetActiveMarkers = (routeId: number) => {
+		dispatch(getPolyline());
 		dispatch(setActiveMarkers(routeId));
 	};
+
 	return (
 		<Table
 			columns={columns}
